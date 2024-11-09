@@ -1,0 +1,21 @@
+table thead th{
+    border: 1px solid;
+
+}
+
+.answered {
+    background-color: green;
+}
+
+.unanswered {
+    background-color: grey;
+}
+
+.progress-bar{
+    position: sticky; 
+    top: 0;           
+    width: 100%;       
+    z-index: 1000;     
+    background-color: white; 
+
+}

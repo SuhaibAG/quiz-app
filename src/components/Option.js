@@ -1,7 +1,7 @@
 import React from 'react';
 import './Option.css';
 
-function Option({ options, questionIndex, handleAnswerOptionClick }) {
+function Option({ options, questionIndex, handleAnswerOptionClick, lock }) {
     return (
         <div className="options-container">
             <ul className="options-list">
@@ -13,6 +13,7 @@ function Option({ options, questionIndex, handleAnswerOptionClick }) {
                                 name={`option-${questionIndex}`}
                                 value={option.answerText}
                                 onChange={() => handleAnswerOptionClick(questionIndex, option.isCorrect)}
+                                disabled = {lock}
                             />
                             {option.answerText}
                         </label>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Question from './Question';
 import Result from './Result';
+import Progress from './Progress'
 import './Quiz.css';
 
 const questions = [
@@ -77,23 +78,41 @@ function Quiz() {
         setShowResult(true);
     };
 
+    const [timeLeft, setTimeLeft] = useState(100);
+    const [lock, setLock] = useState(false);
+    const handleTime = () => {
+        if(timeLeft > 0){
+            let newTime = timeLeft - 1
+            setTimeLeft(newTime)
+        }
+        else{
+            setTimeLeft("TIME IS UP")
+            setLock(true)
+        }
+    };
+    const interval = setInterval(handleTime, 1000);
+
     return (
         <div className="quiz">
             {showResult ? (
                 <Result score={score} totalQuestions={questions.length} />
             ) : (
                 <div>
+                    <Progress answers={answers} totalQuestions={questions.length}/>
                     {questions.map((question, index) => (
                         <Question
                             key={index}
                             question={question}
                             questionIndex={index}
                             handleAnswerOptionClick={handleAnswerOptionClick}
+                            lock={lock}
+                            
                         />
                     ))}
                     <button className="submit-button" onClick={handleSubmit}>
                         Submit
                     </button>
+                    
                 </div>
             )}
         </div>
