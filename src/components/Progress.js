@@ -3,8 +3,8 @@ import './Progress.css';
 
 function Progress({answers}) {
         const [timeLeft, setTimeLeft] = useState(100);
-        let answer = answers.map(item => item === null ? false : item);
-        console.log(answer)
+
+        console.log(answers)
 
         
         const handleTime = () => {
@@ -23,9 +23,9 @@ function Progress({answers}) {
                 <table>
                     <thead>
                         <tr>
-                        {Array.from({ length: answer.length }, (_, index) => (
+                        {Array.from({ length: answers.length }, (_, index) => (
                          <th key={index}
-                             className={answer[index] !== false   ? 'answered' : 'unanswered'}
+                             className={answers[index] !== null   ? 'answered' : 'unanswered'}
                          >  
                             Q{index + 1}</th>
                             ))}
